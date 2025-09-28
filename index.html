@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời Khóa Biểu</title>
+    <style>
+        /* CSS Section: Approximately 600 lines with comments */
+
+        /* General Body Styling */
+        body {
+            font-family: 'Patrick Hand', sans-serif; /* A font that mimics handwriting */
+            background-color: #ffffff;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Container for the entire schedule */
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            background-color: #fff;
+            border: 3px solid #000;
+            border-radius: 15px; /* Slightly rounded corners for a softer look */
+            padding: 20px;
+            position: relative; /* Needed for absolute positioning of images */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* A subtle shadow for depth */
+        }
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 4em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 3px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 2px solid #000;
+            padding: 10px;
+            text-align: center;
+            vertical-align: top;
+            height: 100px; /* Set a fixed height for cells */
+        }
+
+        th {
+            background-color: #fff;
+            font-size: 1.5em;
+        }
+
+        td {
+            font-size: 1.2em;
+        }
+
+        /* Styling for the session headers (Sáng/Chiều) */
+        .session-header {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        /* Slogan Styling */
+        .slogan {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+
+        /* Images Styling (for decoration) */
+        .deco-img {
+            position: absolute; /* Position images freely */
+            z-index: 10;
+        }
+
+        .top-left { top: -60px; left: -50px; width: 150px; }
+        .top-right { top: -40px; right: -30px; width: 100px; }
+        .middle-left { top: 200px; left: -40px; width: 80px; }
+        .middle-right { top: 550px; right: -50px; width: 120px; }
+        .bottom-left-1 { bottom: -70px; left: -20px; width: 130px; }
+        .bottom-left-2 { bottom: -50px; left: 120px; width: 100px; }
+        .bottom-center-1 { bottom: -60px; left: 300px; width: 100px; }
+        .bottom-center-2 { bottom: -70px; left: 450px; width: 100px; }
+        .bottom-right { bottom: -70px; right: 20px; width: 130px; }
+
+
+        /* Notes Section Styling */
+        .notes-section {
+            margin-top: 30px;
+            padding: 20px;
+            border: 3px solid #000;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .notes-section h2 {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        #notes-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #notes-list li {
+            background-color: #fff;
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .note-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        #note-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #000;
+            border-radius: 5px;
+        }
+
+        #add-note-btn, .delete-btn {
+            padding: 10px 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        
+  <!--      <img src="https://i.imgur.com/vHqY7XZ.png" alt="decoration" class="deco-img top-left">
+        <img src="https://i.imgur.com/k9f7b49.png" alt="decoration" class="deco-img top-right">
+        <img src="https://i.imgur.com/kS942yI.png" alt="decoration" class="deco-img middle-left">
+        <img src="https://i.imgur.com/U22Cmr1.png" alt="decoration" class="deco-img middle-right">
+        <img src="https://i.imgur.com/F0z0Vl5.png" alt="decoration" class="deco-img bottom-left-1">
+        <img src="https://i.imgur.com/lO7q9yZ.png" alt="decoration" class="deco-img bottom-left-2">
+        <img src="https://i.imgur.com/8Q9Z5bQ.png" alt="decoration" class="deco-img bottom-center-1">
+        <img src="https://i.imgur.com/x0f6K1q.png" alt="decoration" class="deco-img bottom-center-2">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/051/596/000/small_2x/buchigiri-anime-girl-png.png" alt="decoration" class="deco-img bottom-right"> -->
+
+        <div class="header">
+            <h1>Thời Khóa Biểu</h1>
+        </div>
+
+        <!-- Morning Schedule -->
+        <table>
+            <thead>
+                <tr>
+                    <th class="session-header">Sáng</th>
+                    <th>Thứ Hai</th>
+                    <th>Thứ Ba</th>
+                    <th>Thứ Tư</th>
+                    <th>Thứ Năm</th>
+                    <th>Thứ Sáu</th>
+                    <th>Thứ Bảy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Anh văn cơ sở 1<br>A604</td>
+                    <td>Anh văn cơ sở 1<br>A604</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Triết học<br>A603</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Kinh tế chính trị<br>A603</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Phương pháp học ĐH và NCKH<br>A603</td>
+                    <td></td>
+                    <td></td>
+                    <td>Pháp luật đại cương<br>C301</td>
+                    <td></td>
+                    <td>Anh văn cơ sở 1<br>A604</td>
+                </tr>
+                 <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="slogan">Let's Study Hard, Bae!</div>
+
+        <!-- Afternoon Schedule -->
+        <table>
+             <thead>
+                <tr>
+                    <th class="session-header">Chiều</th>
+                    <th>Thứ Hai</th>
+                    <th>Thứ Ba</th>
+                    <th>Thứ Tư</th>
+                    <th>Thứ Năm</th>
+                    <th>Thứ Sáu</th>
+                    <th>Thứ Bảy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td>Triết học<br>A603</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td>Bóng đá<br>SANBONG</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Notes Section -->
+        <div class="notes-section">
+            <h2>Ghi Chú</h2>
+            <ul id="notes-list"></ul>
+            <div class="note-input-container">
+                <input type="text" id="note-input" placeholder="Thêm ghi chú mới...">
+                <button id="add-note-btn">Thêm</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript Section: Approximately 400 lines with comments
+
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Elements Selection ---
+            const noteInput = document.getElementById('note-input');
+            const addNoteBtn = document.getElementById('add-note-btn');
+            const notesList = document.getElementById('notes-list');
+
+            // --- Load Notes from Local Storage ---
+            // This function retrieves and displays notes that were saved in the browser
+            function loadNotes() {
+                const notes = JSON.parse(localStorage.getItem('timetable_notes')) || [];
+                notesList.innerHTML = ''; // Clear the list before adding notes
+                notes.forEach(note => {
+                    createNoteElement(note.text, note.id);
+                });
+            }
+
+            // --- Create a Note Element ---
+            // This function builds the HTML for a single note item
+            function createNoteElement(text, id) {
+                const li = document.createElement('li');
+                
+                // Add the note's text
+                const noteText = document.createElement('span');
+                noteText.textContent = text;
+                
+                // Add a delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Xóa';
+                deleteBtn.className = 'delete-btn';
+                
+                // Set a unique ID for the list item
+                li.dataset.id = id;
+                
+                // Add event listener to the delete button
+                deleteBtn.addEventListener('click', function() {
+                    deleteNote(id);
+                });
+                
+                // Append text and button to the list item
+                li.appendChild(noteText);
+                li.appendChild(deleteBtn);
+                
+                // Add the note to the list
+                notesList.appendChild(li);
+            }
+            
+            // --- Add a New Note ---
+            function addNote() {
+                const noteText = noteInput.value.trim();
+                
+                if (noteText) {
+                    const notes = JSON.parse(localStorage.getItem('timetable_notes')) || [];
+                    const newNote = {
+                        text: noteText,
+                        id: Date.now() // Use timestamp as a unique ID
+                    };
+                    
+                    notes.push(newNote);
+                    saveNotes(notes);
+                    
+                    createNoteElement(newNote.text, newNote.id);
+                    noteInput.value = ''; // Clear the input field
+                } else {
+                    alert('Vui lòng nhập nội dung ghi chú!');
+                }
+            }
+
+            // --- Delete a Note ---
+            function deleteNote(id) {
+                let notes = JSON.parse(localStorage.getItem('timetable_notes')) || [];
+                notes = notes.filter(note => note.id !== id);
+                saveNotes(notes);
+                
+                // Remove the note element from the DOM
+                const noteElement = document.querySelector(`li[data-id='${id}']`);
+                if (noteElement) {
+                    noteElement.remove();
+                }
+            }
+            
+            // --- Save Notes to Local Storage ---
+            function saveNotes(notes) {
+                localStorage.setItem('timetable_notes', JSON.stringify(notes));
+            }
+
+            // --- Event Listeners ---
+            addNoteBtn.addEventListener('click', addNote);
+            
+            noteInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addNote();
+                }
+            });
+            
+            // Initial load of notes when the page is opened
+            loadNotes();
+
+        });
+    </script>
+</body>
+</html>
